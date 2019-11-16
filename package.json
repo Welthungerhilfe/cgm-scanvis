@@ -1,0 +1,23 @@
+{
+  "name": "cgm-scanvis",
+  "version": "1.0.0",
+  "description": "Tool for the visualization of multi-dimensional scan data of Child Growth Monitor",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Welthungerhilfe/cgm-scanvis.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Welthungerhilfe/cgm-scanvis/issues"
+  },
+  "homepage": "https://github.com/Welthungerhilfe/cgm-scanvis#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
