@@ -1,14 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
+import {InputGroup} from 'reactstrap';
 import Filter from './Filter'
-class FilterList extends Component {
-    render() {
-        return (
-            <div>
-                <Filter>Filter 1</Filter>
-                <Filter>Filter 2</Filter>
-            </div>
-        );
-    }
-}
+const FilterList = () => {
+    return (
+        <div>
+            <p>Select the data filters you wish to pull</p>
+            <Filter title='Consent'></Filter>
+            <Filter title='RGB'></Filter>
+            <Filter title='PCD'></Filter>
+            <Filter title='TODO'></Filter>
+            <Filter title='TODO'></Filter>
+        </div>
+    );
+};  
 
 export default FilterList;
