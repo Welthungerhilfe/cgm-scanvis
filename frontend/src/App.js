@@ -3,7 +3,6 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Card, CardText, CardBody, CardTitle, CardImg, CardSubtitle, Button} from 'reactstrap'
 
-
   class App extends Component {
     constructor(props) {
       super(props);
@@ -40,11 +39,26 @@ import {Card, CardText, CardBody, CardTitle, CardImg, CardSubtitle, Button} from
     // Later we will try to save the actual file into JSON format and push to back end (alternatively save on Data Scientist's computer and upload at later time)
 
     handleChange(event) {
-      this.setState({ name: event.target.value });
+      const tryRequire = (path) => {
+        this.setState({ name: event.target.value });
+      };
     }
   
     handleSubmit(event) {
       event.preventDefault();
+      // Try to get files at a particular path, if there are none and path does not exist, returns null
+      let testPath = 'test';
+      try {
+        console.log('path worked')
+        // testPath = require('../src/data/MH_WHH_0123/fake.jpg');
+        // var filter = fileMatch('../src/data/MH_WHH_0123/**/*');
+        listReactFiles('../src/data/MH_WHH_0123/').then(files => console.log(files))
+
+      } catch (err) {
+        testPath = 'path did not work';
+        return null;
+      }
+      
       fetch(`/api/greeting?name=${encodeURIComponent(this.state.name)}`)
         .then(response => response.json())
         .then(state => this.setState(state));

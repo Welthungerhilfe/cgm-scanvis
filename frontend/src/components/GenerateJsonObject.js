@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-  class GenerateJson extends Component {
+  class GenerateJsonObject extends Component {
     constructor(props) {
       super(props);
       this.state = {
@@ -77,9 +77,9 @@ import React, {Component} from 'react';
             // TODO: after timestamp, get the 3 digit code (ex. 104)
             // TODO: check all files and make a set of the codes(no repeats)
             // TODO: use codes to populate the json(standing, front, 360, old, etc)
-            // 5. have DS check it over final review and click ‘save’ (push to DB or save to PC with QR code in the format)
-            // 5. let DS enter some kind of information that is not captured with this json ? save as string and stick in there as ‘other’?
-          }
+            // TODO: have DS check it over final review and click ‘save’ (push to DB or save to PC with QR code in the format)
+            // TODO: let DS enter some kind of information that is not captured with this json ? save as string and stick in there as ‘other’?
+          } 
         }
   
         
@@ -96,4 +96,4 @@ import React, {Component} from 'react';
   }
 
 
-export default GenerateJson;
+export default GenerateJsonObject;
