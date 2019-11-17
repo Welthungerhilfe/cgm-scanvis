@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactTable from "react-table";
 import {Link} from 'react-router-dom'
 import "react-table/react-table.css";
+import FolderImage from './FolderImage'
 // import TableRow from './TableRow';
 
 export default class Table extends React.Component {
@@ -9,6 +10,7 @@ export default class Table extends React.Component {
     render () {
 
         const columns = [{
+            Cell:({row})=>(<FolderImage>Visualize</FolderImage>),
             Header: '',
             accessor: 'folder'
         },{
