@@ -4,7 +4,7 @@ const Filter = (props) => {
     return (
         <>
             <div className="Inputs">
-                <input type='checkbox' aria-label={`checkbox for ${props.title}`}/>
+                <input type='checkbox' aria-label={`checkbox for ${props.title}`} name={props.title} onChange={(e)=> props.handleChange(e)}/>
                 <label htmlFor={props.title}>{props.title}</label>
             </div>    
         </>

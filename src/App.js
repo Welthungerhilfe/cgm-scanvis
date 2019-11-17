@@ -47,10 +47,9 @@ const sampleData = [
       this.state = {
         name: '',
         greeting: '',
-        consentSelected:false,
-        RGBSelected:false,
-        PCDSelected:false,
-        filteredData:[...sampleData]
+        Consent: false,
+        RGB: false,
+        PCD: false,
       };
     }
     handleChange(event) {
@@ -68,7 +67,24 @@ const sampleData = [
       searchForJson(testPath);
     }
 
+    handleChange(event) {
+      const filterTitle = event.currentTarget.name;
+      let toggleBoolean = true;
+      if (this.state[filterTitle]) {
+        toggleBoolean = false;
+      } else {
+        toggleBoolean = true;
+      }
+      this.setState({ [filterTitle]: toggleBoolean });
+    }
 
+    handleSubmit(event) {
+      event.preventDefault();
+
+      fetch(`/api/greeting?name=${encodeURIComponent(this.state.name)}`)
+        .then(response => response.json())
+        .then(state => this.setState(state));
+    }
   render() {
     return (
       <div className="App">
@@ -82,8 +98,8 @@ const sampleData = [
           </div>
         </header>
         <main className="App-main">
-          <FilterList></FilterList>
-          <Table data={this.state.filteredData}></Table>
+          <FilterList handleChange={this.handleChange}></FilterList>
+          <Table></Table>
         </main>
       </div>
     );
@@ -110,6 +126,8 @@ function createObjectFromJson(pathToData) {
   // If any of the folders are missing the JSON file, call GenerateJson with that folder and the data contained in it. We are returned the object from that and then that object can be saved in state.
 
   // Later we will try to save the actual file into JSON format and push to back end (alternatively save on Data Scientist's computer and upload at later time)
+
+  const newJsonObject = {};
 }
 
 export default App;

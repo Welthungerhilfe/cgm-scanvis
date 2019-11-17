@@ -2,10 +2,9 @@
 
 Tool for the visualization of multi-dimensional scan data of Child Growth Monitor
 
-# running the frontend
+# Running the app
 
 ```
-cd frontend
 npm install
 npm run dev
 ```
