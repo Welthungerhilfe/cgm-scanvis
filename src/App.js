@@ -7,35 +7,70 @@ import Table from './components/Table';
 
 import GenerateJsonObject from './components/GenerateJsonObject';
 
+const sampleData = [
+
+  {
+    filename:'MH_001',
+    PCD:true,
+    RGB: true,
+    Consent:true,
+  },
+  {
+    filename:'MH_002',
+    PCD:true,
+    RGB:true,
+    Consent:true,
+  },
+  {
+    filename:'MH_003',
+    PCD:true,
+    RGB:false,
+    Consent:false,
+  },
+  {
+    filename:'MH_004',
+    PCD:true,
+    RGB:false,
+    Consent:true,
+  },
+  {
+    filename:'MH_005',
+    PCD:false,
+    RGB:false,
+    Consent:false,
+  },
+]
+
   class App extends Component {
     constructor(props) {
       super(props);
       this.state = {
         name: '',
-        greeting: ''
+        greeting: '',
+        consentSelected:false,
+        RGBSelected:false,
+        PCDSelected:false,
+        filteredData:[...sampleData]
       };
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
     }
-    
+    handleChange(event) {
+      this.setState(filteredData: sampleData.filter(data=>{
+        if(event.currentTarget.value){
+          return data[event.currentTarget.name]===value;
+        }
+        return true;
+      }))
+    }
     componentDidMount() {
       // Once user is authenticated and data files are loaded, look for the JSON files in each child's folder and generate state object for that. The key is the QR code, and the value is an object which has key-value pairs for each of the JSON values we want.
       const testPath = '';
       searchForJson(testPath);
     }
-    
-    handleChange(event) {
-      this.setState({ name: event.target.value });
-    }
-  
-    handleSubmit(event) {
-      event.preventDefault();
-      
-      fetch(`/api/greeting?name=${encodeURIComponent(this.state.name)}`)
-        .then(response => response.json())
-        .then(state => this.setState(state));
-    }
-  render() {  
+
+
+  render() {
     return (
       <div className="App">
         <header className="App-header">
@@ -45,12 +80,12 @@ import GenerateJsonObject from './components/GenerateJsonObject';
           <div className="App-header-title">
             <h1>Action Against Hunger</h1>
             <h2>Data Scan Visualization Dashboard</h2>
-          </div> 
+          </div>
         </header>
         <main className="App-main">
           <FilterList></FilterList>
-          <Table></Table>
-        </main>  
+          <Table data={this.state.filteredData}></Table>
+        </main>
       </div>
     );
     }
