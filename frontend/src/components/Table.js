@@ -6,38 +6,38 @@ import "react-table/react-table.css";
 export default class Table extends React.Component {
     render () {
         const data = [{  
-                todo: 'todo',  
+                folder: '',  
                 filename: 'todo',
                 size: 'todo',
                 updated: 'todo'
             },{  
-                todo: 'todo',  
+                todo: '',  
                 filename: 'todo',
                 size: 'todo',
                 updated: 'todo'  
             },{  
-                todo: 'todo',  
+                todo: '',  
                 filename: 'todo',
                 size: 'todo',
                 updated: 'todo'      
             },{  
-                todo: 'todo',  
+                todo: '',  
                 filename: 'todo',
                 size: 'todo',
                 updated: 'todo'  
             },{  
-                todo: 'todo',  
+                todo: '',  
                 filename: 'todo',
                 size: 'todo',
                 updated: 'todo'  
             },{  
-                todo: 'todo',  
+                todo: '',  
                 filename: 'todo',
                 size: 'todo',
                 updated: 'todo'
             }]  
         const columns = [{  
-            Header: 'TODO IMAGE',  
+            Header: '',  
             accessor: 'todo'  
         },{  
             Header: 'File Name',  

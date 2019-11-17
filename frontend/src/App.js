@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
-import './App.css';
+import './styles/App.css';
 import logo from './aah-logo.jpg';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-import {Card, CardText, CardBody, CardTitle, CardImg, CardSubtitle, Button} from 'reactstrap';
 import FilterList from './components/FilterList';
 import Table from './components/Table';
 
@@ -64,15 +62,19 @@ import GenerateJsonObject from GenerateJsonObject;
   render() {  
     return (
       <div className="App">
-      <header className="App-header">
-        <div className="App-header-logo">
-          <img src={logo} className="App-logo" alt="logo" />
-        </div>
-          <h1>Action Against Hunger</h1>
-          <h2>Data Scan Visualization Dashboard</h2>
+        <header className="App-header">
+          <div className="App-header-logo">
+            <img src={logo} className="App-logo" alt="logo" />
+          </div>
+          <div class="App-header-title">
+            <h1>Action Against Hunger</h1>
+            <h2>Data Scan Visualization Dashboard</h2>
+          </div> 
         </header>
-        <FilterList></FilterList>
-        <Table></Table>
+        <main className="App-main">
+          <FilterList></FilterList>
+          <Table></Table>
+        </main>  
       </div>
     );
     }
