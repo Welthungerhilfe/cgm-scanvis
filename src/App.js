@@ -52,16 +52,15 @@ const sampleData = [
         PCDSelected:false,
         filteredData:[...sampleData]
       };
-      this.handleChange = this.handleChange.bind(this);
-      this.handleSubmit = this.handleSubmit.bind(this);
     }
     handleChange(event) {
-      this.setState(filteredData: sampleData.filter(data=>{
-        if(event.currentTarget.value){
+      this.setState({filteredData: sampleData.filter(data=>{
+        const value = event.currentTarget.value;
+        if(value){
           return data[event.currentTarget.name]===value;
         }
         return true;
-      }))
+      })})
     }
     componentDidMount() {
       // Once user is authenticated and data files are loaded, look for the JSON files in each child's folder and generate state object for that. The key is the QR code, and the value is an object which has key-value pairs for each of the JSON values we want.
