@@ -81,10 +81,7 @@ import React, {Component} from 'react';
             // TODO: let DS enter some kind of information that is not captured with this json ? save as string and stick in there as ‘other’?
           } 
         }
-  
-        
-  
-  
+
         return (qrCode, newJsonObject);
       };
     }

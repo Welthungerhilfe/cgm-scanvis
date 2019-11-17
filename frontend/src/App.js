@@ -3,6 +3,11 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Card, CardText, CardBody, CardTitle, CardImg, CardSubtitle, Button} from 'reactstrap'
 
+import listReactFiles from 'list-react-files'
+import * as fs from 'fs';
+
+import GenerateJsonObject from GenerateJsonObject;
+
   class App extends Component {
     constructor(props) {
       super(props);
@@ -12,32 +17,38 @@ import {Card, CardText, CardBody, CardTitle, CardImg, CardSubtitle, Button} from
       };
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
+      this.searchForJson = this.searchForJson.bind(this);
+      this.createObjectFromJson = this.createObjectFromJson.bind(this);
     }
 
-    // Once user is authenticated and data files are loaded, look for the JSON files in each child's folder and generate state object for that. The key is the QR code, and the value is an object which has key-value pairs for each of the JSON values we want, for example:
+    searchForJson(pathToData) {
+      // If any of the folders are missing the JSON file, call GenerateJson with that folder and the data contained in it. We are returned the object from that and then that object can be saved in state.
 
-    // MH_WHH_0123: {
-    //   deeplinkPath: 'dir/filename',
-    //   consentExists: false,
-    //   consentLegible: false,
-    //   isTestData: false,
-    //   isValidated: false,
-    //   pose: {
-    //     standing: false,
-    //     lying: true,
-    //     notAvailable: false
-    //   },
-    //   angle: {
-    //     front: true,
-    //     back: true,
-    //     '360': false,
-    //   }
-    // }
+      // Scan through the top level of data and get all the QR codes. For each one, check if the JSON file is there.
+      // TODO: Use list-react-files or fs to scan through the files and get QR codes?
+
+      const jsonPath = 'data/pathToData/.json';
+      const qrCode = 'MH_WHH_0123';
+
+      if (jsonPath) {
+        createObjectFromJson(pathToData)
+      } else {
+        GenerateJsonObject(qrCode)
+      }
+    }
+
+    createObjectFromJson(pathToData) {
+      // If any of the folders are missing the JSON file, call GenerateJson with that folder and the data contained in it. We are returned the object from that and then that object can be saved in state.
+
+      // Later we will try to save the actual file into JSON format and push to back end (alternatively save on Data Scientist's computer and upload at later time)
+    }
     
-    // If any of the folders are missing the JSON file, call GenerateJson with that folder and the data contained in it. We are returned the object from that and then that object can be saved in state.
-
-    // Later we will try to save the actual file into JSON format and push to back end (alternatively save on Data Scientist's computer and upload at later time)
-
+    componentDidMount() {
+      // Once user is authenticated and data files are loaded, look for the JSON files in each child's folder and generate state object for that. The key is the QR code, and the value is an object which has key-value pairs for each of the JSON values we want.
+      const testPath = '';
+      searchForJson(testPath);
+    }
+    
     handleChange(event) {
       const tryRequire = (path) => {
         this.setState({ name: event.target.value });
@@ -46,18 +57,6 @@ import {Card, CardText, CardBody, CardTitle, CardImg, CardSubtitle, Button} from
   
     handleSubmit(event) {
       event.preventDefault();
-      // Try to get files at a particular path, if there are none and path does not exist, returns null
-      let testPath = 'test';
-      try {
-        console.log('path worked')
-        // testPath = require('../src/data/MH_WHH_0123/fake.jpg');
-        // var filter = fileMatch('../src/data/MH_WHH_0123/**/*');
-        listReactFiles('../src/data/MH_WHH_0123/').then(files => console.log(files))
-
-      } catch (err) {
-        testPath = 'path did not work';
-        return null;
-      }
       
       fetch(`/api/greeting?name=${encodeURIComponent(this.state.name)}`)
         .then(response => response.json())
