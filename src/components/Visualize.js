@@ -3,7 +3,7 @@ import * as THREE from 'three';
 import Stats from 'three/examples/jsm/libs/stats.module.js';
 import { TrackballControls } from 'three/examples/jsm/controls/TrackballControls.js';
 import { PCDLoader } from 'three/examples/jsm/loaders/PCDLoader.js';
-import pcd from '../data/VisualizeHelpers/data/MH_WHH_0294/measurements/1542604024995/pc/pc_MH_WHH_0294_1542604024995_107_021.pcd'; // Hard coded for now. Need to dynamically generate this in the future
+// import pcd from '../data/VisualizeHelpers/data/MH_WHH_0294/measurements/1542604024995/pc/pc_MH_WHH_0294_1542604024995_107_021.pcd'; // Hard coded for now. Need to dynamically generate this in the future
 
 class Visualize extends Component {
   componentDidMount() {
