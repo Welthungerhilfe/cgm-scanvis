@@ -7,6 +7,40 @@ import Table from './components/Table';
 
 import GenerateJsonObject from './components/GenerateJsonObject';
 
+const sampleData = [
+
+  {
+    filename:'MH_001',
+    PCD:true,
+    RGB: true,
+    Consent:true,
+  },
+  {
+    filename:'MH_002',
+    PCD:true,
+    RGB:true,
+    Consent:true,
+  },
+  {
+    filename:'MH_003',
+    PCD:true,
+    RGB:false,
+    Consent:false,
+  },
+  {
+    filename:'MH_004',
+    PCD:true,
+    RGB:false,
+    Consent:true,
+  },
+  {
+    filename:'MH_005',
+    PCD:false,
+    RGB:false,
+    Consent:false,
+  },
+]
+
   class App extends Component {
     constructor(props) {
       super(props);
@@ -16,36 +50,43 @@ import GenerateJsonObject from './components/GenerateJsonObject';
         Consent: false,
         RGB: false,
         PCD: false,
+        filteredData:[...sampleData]
       };
       this.handleChange = this.handleChange.bind(this);
-      this.handleSubmit = this.handleSubmit.bind(this);
     }
-    
     componentDidMount() {
       // Once user is authenticated and data files are loaded, look for the JSON files in each child's folder and generate state object for that. The key is the QR code, and the value is an object which has key-value pairs for each of the JSON values we want.
       const testPath = '';
       searchForJson(testPath);
     }
-    
+
     handleChange(event) {
       const filterTitle = event.currentTarget.name;
       let toggleBoolean = true;
+      console.log(this);
+
       if (this.state[filterTitle]) {
         toggleBoolean = false;
       } else {
         toggleBoolean = true;
       }
       this.setState({ [filterTitle]: toggleBoolean });
+      this.setState({filteredData: [...sampleData.filter(data=>{
+        if(toggleBoolean){
+          return data[event.currentTarget.name]===toggleBoolean;
+        }
+        return true;
+      })]})
     }
-  
+
     handleSubmit(event) {
       event.preventDefault();
-      
+
       fetch(`/api/greeting?name=${encodeURIComponent(this.state.name)}`)
         .then(response => response.json())
         .then(state => this.setState(state));
     }
-  render() {  
+  render() {
     return (
       <div className="App">
         <header className="App-header">
@@ -55,12 +96,12 @@ import GenerateJsonObject from './components/GenerateJsonObject';
           <div className="App-header-title">
             <h1>Action Against Hunger</h1>
             <h2>Data Scan Visualization Dashboard</h2>
-          </div> 
+          </div>
         </header>
         <main className="App-main">
           <FilterList handleChange={this.handleChange}></FilterList>
-          <Table></Table>
-        </main>  
+          <Table data={this.state.filteredData}></Table>
+        </main>
       </div>
     );
     }
@@ -86,7 +127,7 @@ function createObjectFromJson(pathToData) {
   // If any of the folders are missing the JSON file, call GenerateJson with that folder and the data contained in it. We are returned the object from that and then that object can be saved in state.
 
   // Later we will try to save the actual file into JSON format and push to back end (alternatively save on Data Scientist's computer and upload at later time)
-  
+
   const newJsonObject = {};
 }
 
