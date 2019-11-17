@@ -11,34 +11,34 @@ export default class Table extends React.Component {
                 size: 'todo',
                 updated: 'todo'
             },{  
-                todo: '',  
+                folder: '',  
                 filename: 'todo',
                 size: 'todo',
                 updated: 'todo'  
             },{  
-                todo: '',  
+                folder: '',  
                 filename: 'todo',
                 size: 'todo',
                 updated: 'todo'      
             },{  
-                todo: '',  
+                folder: '',  
                 filename: 'todo',
                 size: 'todo',
                 updated: 'todo'  
             },{  
-                todo: '',  
+                folder: '',  
                 filename: 'todo',
                 size: 'todo',
                 updated: 'todo'  
             },{  
-                todo: '',  
+                folder: '',  
                 filename: 'todo',
                 size: 'todo',
                 updated: 'todo'
             }]  
         const columns = [{  
             Header: '',  
-            accessor: 'todo'  
+            accessor: 'folder'  
         },{  
             Header: 'File Name',  
             accessor: 'filename'  
