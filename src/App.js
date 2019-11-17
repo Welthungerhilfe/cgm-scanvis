@@ -50,16 +50,9 @@ const sampleData = [
         Consent: false,
         RGB: false,
         PCD: false,
+        filteredData:[...sampleData]
       };
-    }
-    handleChange(event) {
-      this.setState({filteredData: sampleData.filter(data=>{
-        const value = event.currentTarget.value;
-        if(value){
-          return data[event.currentTarget.name]===value;
-        }
-        return true;
-      })})
+      this.handleChange = this.handleChange.bind(this);
     }
     componentDidMount() {
       // Once user is authenticated and data files are loaded, look for the JSON files in each child's folder and generate state object for that. The key is the QR code, and the value is an object which has key-value pairs for each of the JSON values we want.
@@ -70,12 +63,20 @@ const sampleData = [
     handleChange(event) {
       const filterTitle = event.currentTarget.name;
       let toggleBoolean = true;
+      console.log(this);
+
       if (this.state[filterTitle]) {
         toggleBoolean = false;
       } else {
         toggleBoolean = true;
       }
       this.setState({ [filterTitle]: toggleBoolean });
+      this.setState({filteredData: [...sampleData.filter(data=>{
+        if(toggleBoolean){
+          return data[event.currentTarget.name]===toggleBoolean;
+        }
+        return true;
+      })]})
     }
 
     handleSubmit(event) {
@@ -99,7 +100,7 @@ const sampleData = [
         </header>
         <main className="App-main">
           <FilterList handleChange={this.handleChange}></FilterList>
-          <Table></Table>
+          <Table data={this.state.filteredData}></Table>
         </main>
       </div>
     );
