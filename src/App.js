@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import FilterList from './components/FilterList';
 import Table from './components/Table';
 
-import GenerateJsonObject from '../src/components/GenerateJsonObject';
+import GenerateJsonObject from './components/GenerateJsonObject';
 
   class App extends Component {
     constructor(props) {
@@ -42,7 +42,7 @@ import GenerateJsonObject from '../src/components/GenerateJsonObject';
           <div className="App-header-logo">
             <img src={logo} className="App-logo" alt="logo" />
           </div>
-          <div class="App-header-title">
+          <div className="App-header-title">
             <h1>Action Against Hunger</h1>
             <h2>Data Scan Visualization Dashboard</h2>
           </div> 
