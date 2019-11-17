@@ -12,7 +12,10 @@ import GenerateJsonObject from './components/GenerateJsonObject';
       super(props);
       this.state = {
         name: '',
-        greeting: ''
+        greeting: '',
+        Consent: false,
+        RGB: false,
+        PCD: false,
       };
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
@@ -25,7 +28,14 @@ import GenerateJsonObject from './components/GenerateJsonObject';
     }
     
     handleChange(event) {
-      this.setState({ name: event.target.value });
+      const filterTitle = event.currentTarget.name;
+      let toggleBoolean = true;
+      if (this.state[filterTitle]) {
+        toggleBoolean = false;
+      } else {
+        toggleBoolean = true;
+      }
+      this.setState({ [filterTitle]: toggleBoolean });
     }
   
     handleSubmit(event) {
@@ -48,7 +58,7 @@ import GenerateJsonObject from './components/GenerateJsonObject';
           </div> 
         </header>
         <main className="App-main">
-          <FilterList></FilterList>
+          <FilterList handleChange={this.handleChange}></FilterList>
           <Table></Table>
         </main>  
       </div>
@@ -76,6 +86,8 @@ function createObjectFromJson(pathToData) {
   // If any of the folders are missing the JSON file, call GenerateJson with that folder and the data contained in it. We are returned the object from that and then that object can be saved in state.
 
   // Later we will try to save the actual file into JSON format and push to back end (alternatively save on Data Scientist's computer and upload at later time)
+  
+  const newJsonObject = {};
 }
 
 export default App;
