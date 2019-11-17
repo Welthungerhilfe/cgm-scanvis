@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import './styles/App.css';
 import logo from './aah-logo.jpg';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -8,84 +8,87 @@ import Table from './components/Table';
 import GenerateJsonObject from './components/GenerateJsonObject';
 
 const sampleData = [
-
   {
-    filename:'MH_001',
-    PCD:true,
+    filename: 'MH_001',
+    PCD: true,
     RGB: true,
-    Consent:true,
+    Consent: true,
   },
   {
-    filename:'MH_002',
-    PCD:true,
-    RGB:true,
-    Consent:true,
+    filename: 'MH_002',
+    PCD: true,
+    RGB: true,
+    Consent: true,
   },
   {
-    filename:'MH_003',
-    PCD:true,
-    RGB:false,
-    Consent:false,
+    filename: 'MH_003',
+    PCD: true,
+    RGB: false,
+    Consent: false,
   },
   {
-    filename:'MH_004',
-    PCD:true,
-    RGB:false,
-    Consent:true,
+    filename: 'MH_004',
+    PCD: true,
+    RGB: false,
+    Consent: true,
   },
   {
-    filename:'MH_005',
-    PCD:false,
-    RGB:false,
-    Consent:false,
+    filename: 'MH_005',
+    PCD: false,
+    RGB: false,
+    Consent: false,
   },
-]
+];
 
-  class App extends Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        name: '',
-        greeting: '',
-        Consent: false,
-        RGB: false,
-        PCD: false,
-        filteredData:[...sampleData]
-      };
-      this.handleChange = this.handleChange.bind(this);
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: '',
+      greeting: '',
+      Consent: false,
+      RGB: false,
+      PCD: false,
+      filteredData: [...sampleData],
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
+  componentDidMount() {
+    // Once user is authenticated and data files are loaded, look for the JSON files in each child's folder and generate state object for that. The key is the QR code, and the value is an object which has key-value pairs for each of the JSON values we want.
+    const testPath = '';
+    searchForJson(testPath);
+  }
+
+  handleChange(event) {
+    const filterTitle = event.currentTarget.name;
+    let toggleBoolean = true;
+    console.log(this);
+
+    if (this.state[filterTitle]) {
+      toggleBoolean = false;
+    } else {
+      toggleBoolean = true;
     }
-    componentDidMount() {
-      // Once user is authenticated and data files are loaded, look for the JSON files in each child's folder and generate state object for that. The key is the QR code, and the value is an object which has key-value pairs for each of the JSON values we want.
-      const testPath = '';
-      searchForJson(testPath);
-    }
+    this.setState({ [filterTitle]: toggleBoolean });
+    this.setState({
+      filteredData: [
+        ...sampleData.filter(data => {
+          if (toggleBoolean) {
+            return data[event.currentTarget.name] === toggleBoolean;
+          }
+          return true;
+        }),
+      ],
+    });
+  }
 
-    handleChange(event) {
-      const filterTitle = event.currentTarget.name;
-      let toggleBoolean = true;
-      console.log(this);
+  handleSubmit(event) {
+    event.preventDefault();
 
-      if (this.state[filterTitle]) {
-        toggleBoolean = false;
-      } else {
-        toggleBoolean = true;
-      }
-      this.setState({ [filterTitle]: toggleBoolean });
-      this.setState({filteredData: [...sampleData.filter(data=>{
-        if(toggleBoolean){
-          return data[event.currentTarget.name]===toggleBoolean;
-        }
-        return true;
-      })]})
-    }
-
-    handleSubmit(event) {
-      event.preventDefault();
-
-      fetch(`/api/greeting?name=${encodeURIComponent(this.state.name)}`)
-        .then(response => response.json())
-        .then(state => this.setState(state));
-    }
+    fetch(`/api/greeting?name=${encodeURIComponent(this.state.name)}`)
+      .then(response => response.json())
+      .then(state => this.setState(state));
+  }
   render() {
     return (
       <div className="App">
@@ -104,8 +107,8 @@ const sampleData = [
         </main>
       </div>
     );
-    }
   }
+}
 
 function searchForJson(pathToData) {
   // If any of the folders are missing the JSON file, call GenerateJson with that folder and the data contained in it. We are returned the object from that and then that object can be saved in state.
@@ -117,9 +120,9 @@ function searchForJson(pathToData) {
   const qrCode = 'MH_WHH_0123';
 
   if (jsonPath) {
-    createObjectFromJson(pathToData)
+    createObjectFromJson(pathToData);
   } else {
-    GenerateJsonObject(qrCode)
+    GenerateJsonObject(qrCode);
   }
 }
 
