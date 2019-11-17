@@ -48,7 +48,7 @@ import React, {Component} from 'react';
       };
   
       const createJsonObject = (qrCode) => {
-        newJsonObject = {};
+        let newJsonObject = {};
   
         // Use qrCode to get data folder
         const dataFolder = tryRequire(`/server/data/${qrCode}`);
