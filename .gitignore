@@ -24,7 +24,9 @@ yarn-debug.log*
 yarn-error.log*
 
 #data 
-src/VisualizeHelpers/
+src/data/VisualizeHelpers/
 
 .vscode/
-../.DS_Store
+.DS_Store
+package-lock.json 
+
