@@ -7,13 +7,6 @@ Tool for the visualization of multi-dimensional scan data of Child Growth Monito
 ```
 cd frontend
 npm install
-npm start
+npm run dev
 ```
 
-# running the backend
-
-```
-cd backend
-npm install
-npm start
-```
