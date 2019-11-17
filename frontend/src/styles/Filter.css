@@ -1,0 +1,23 @@
+.Filter p {
+  font-size: 1.75rem;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.FilterList {
+  display: flex;
+  padding: 2rem;
+  justify-content: space-around;
+  background-color: #0061b5;
+  margin-bottom: 1.5rem;
+}
+
+.Inputs {
+  color: white;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.Inputs label {
+  padding-left: 1rem;
+}
