@@ -1,35 +1,42 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Card, CardText, CardBody, CardTitle, CardImg, CardSubtitle, Button} from 'reactstrap'
+import {
+  Card,
+  CardText,
+  CardBody,
+  CardTitle,
+  CardImg,
+  CardSubtitle,
+  Button,
+} from 'reactstrap';
+import Visualize from './Visualize';
 
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: '',
+      greeting: '',
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
 
-  class App extends Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        name: '',
-        greeting: ''
-      };
-      this.handleChange = this.handleChange.bind(this);
-      this.handleSubmit = this.handleSubmit.bind(this);
-    }
-  
-    handleChange(event) {
-      this.setState({ name: event.target.value });
-    }
-  
-    handleSubmit(event) {
-      event.preventDefault();
-      fetch(`/api/greeting?name=${encodeURIComponent(this.state.name)}`)
-        .then(response => response.json())
-        .then(state => this.setState(state));
-    }
-  render() {  
+  handleChange(event) {
+    this.setState({ name: event.target.value });
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    fetch(`/api/greeting?name=${encodeURIComponent(this.state.name)}`)
+      .then(response => response.json())
+      .then(state => this.setState(state));
+  }
+  render() {
     return (
       <div className="App">
         <header className="App-header">
-          
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
@@ -53,10 +60,10 @@ import {Card, CardText, CardBody, CardTitle, CardImg, CardSubtitle, Button} from
             Learn React
           </a>
         </header>
+        <Visualize />
       </div>
     );
-    }
   }
-
+}
 
 export default App;

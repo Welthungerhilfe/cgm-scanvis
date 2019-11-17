@@ -24,7 +24,7 @@ yarn-debug.log*
 yarn-error.log*
 
 #data 
-server/data/
+src/VisualizeHelpers/
 
 .vscode/
 ../.DS_Store
