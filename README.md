@@ -17,3 +17,9 @@ The sample pcd file is imported [here](https://github.com/Welthungerhilfe/cgm-sc
 
 Make sure the following pcd exists.
 `src/data/VisualizeHelpers/data/MH_WHH_0294/measurements/1542604024995/pc/pc_MH_WHH_0294_1542604024995_107_021.pcd` 
+
+# Run the backend
+
+```
+node server/server.js
+```
